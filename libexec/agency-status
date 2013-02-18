@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Usage: r status [all]
+# Usage: agency status [all]
 # Summary: Check GitHub system status
 # Help: https://status.github.com/api
 #

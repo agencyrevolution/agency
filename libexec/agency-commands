@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Usage: rev commands
-# Summary: List all rev commands
-# Help: This command is mostly used for autocompletion in various shells, and for `rev help`.
+# Usage: agency commands
+# Summary: List all agency commands
+# Help: This command is mostly used for autocompletion in various shells, and for `agency help`.
 # Also, this command helps find commands that are named the same as potentially builtin shell commands (which, cd, etc)
 
 set -e
 
-# Provide rev completions
+# Provide agency completions
 if [ "$1" = "--complete" ]; then
   echo --sh
   echo --no-sh
@@ -24,8 +24,8 @@ fi
 shopt -s nullglob
 
 { for path in ${PATH//:/$'\n'}; do
-    for command in "${path}/rev-"*; do
-      command="${command##*rev-}"
+    for command in "${path}/agency-"*; do
+      command="${command##*agency-}"
       if [ -n "$sh" ]; then
         if [ ${command:0:3} = "sh-" ]; then
           echo ${command##sh-}

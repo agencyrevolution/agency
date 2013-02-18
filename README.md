@@ -1,4 +1,4 @@
-# rev
+# agency
 
 Our fork of [37signals/sub][sub].
 

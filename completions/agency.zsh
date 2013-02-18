@@ -2,17 +2,17 @@ if [[ ! -o interactive ]]; then
     return
 fi
 
-compctl -K _rev rev
+compctl -K _agency agency
 
-_rev() {
+_agency() {
   local word words completions
   read -cA words
   word="${words[2]}"
 
   if [ "${#words}" -eq 2 ]; then
-    completions="$(rev commands)"
+    completions="$(agency commands)"
   else
-    completions="$(rev completions "${word}")"
+    completions="$(agency completions "${word}")"
   fi
 
   reply=("${(ps:\n:)completions}")

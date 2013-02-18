@@ -45,28 +45,28 @@ if [ -z "$print" ]; then
     ;;
   esac
 
-  { echo "# Load rev automatically by adding"
+  { echo "# Load agency automatically by adding"
     echo "# the following to ${profile}:"
     echo
-    echo "eval \"\$(${_REV_ROOT}/bin/rev init -)\""
+    echo "eval \"\$(${_AGENCY_ROOT}/bin/agency init -)\""
     echo
   } >&2
 
   exit 1
 fi
 
-echo "export PATH=\"\${PATH}:${_REV_ROOT}/bin\""
+echo "export PATH=\"\${PATH}:${_AGENCY_ROOT}/bin\""
 
 case "$shell" in
 bash | zsh )
-  echo "source \"$root/completions/rev.${shell}\""
+  echo "source \"$root/completions/agency.${shell}\""
   ;;
 esac
 
-commands=(`rev commands --sh`)
+commands=(`agency commands --sh`)
 IFS="|"
 cat <<EOS
-_rev_wrapper() {
+_agency_wrapper() {
   local command="\$1"
   if [ "\$#" -gt 0 ]; then
     shift
@@ -74,9 +74,9 @@ _rev_wrapper() {
 
   case "\$command" in
   ${commands[*]})
-    eval \`rev "sh-\$command" "\$@"\`;;
+    eval \`agency "sh-\$command" "\$@"\`;;
   *)
-    command rev "\$command" "\$@";;
+    command agency "\$command" "\$@";;
   esac
 }
 EOS
@@ -86,9 +86,9 @@ EOS
 # fix both cases here by letting zsh have a function, and bash have its alias.
 case "$shell" in
 bash )
-  echo "alias rev=_rev_wrapper"
+  echo "alias agency=_agency_wrapper"
   ;;
 zsh )
-  echo "rev=_rev_wrapper"
+  echo "agency=_agency_wrapper"
   ;;
 esac

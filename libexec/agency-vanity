@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Usage: rev vanity
+# Usage: agency vanity
 # Summary: Check Twitter followers count
 # Help: Uses the t gem to check followers for a given Twitter user
 #
-#    rev vanity [username]
+#    agency vanity [username]
 
 set -e
 USERNAME=${1:-"agencyrev"}

@@ -20,18 +20,18 @@ abs_dirname() {
 }
 
 libexec_path="$(abs_dirname "$0")"
-export _REV_ROOT="$(abs_dirname "$libexec_path")"
+export _AGENCY_ROOT="$(abs_dirname "$libexec_path")"
 export PATH="${libexec_path}:$PATH"
 
 command="$1"
 case "$command" in
 "" | "-h" | "--help" )
-  exec rev-help
+  exec agency-help
   ;;
 * )
-  command_path="$(command -v "rev-$command" || true)"
+  command_path="$(command -v "agency-$command" || true)"
   if [ ! -x "$command_path" ]; then
-    echo "rev: no such command \`$command'" >&2
+    echo "agency: no such command \`$command'" >&2
     exit 1
   fi
 
