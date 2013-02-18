@@ -23,6 +23,6 @@ You could also install agency in a different directory, say `/usr/local`. This i
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [LICENSE](LICENSE).
 
 [sub]: https://github.com/37signals/sub
