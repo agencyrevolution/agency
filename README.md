@@ -21,6 +21,13 @@ For zsh users:
 
 You could also install agency in a different directory, say `/usr/local`. This is just one way you could provide a way to install agency.
 
+## Setup Connect Logins
+
+* Open `agency/libexec/agency-connect`
+* Fill out or customize the login variables
+* Save and close `agency-connect`
+* Test by running `$ agency connect`
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
