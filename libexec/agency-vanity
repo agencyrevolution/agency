@@ -6,5 +6,7 @@
 #    agency vanity [username]
 
 set -e
-USERNAME=${1:-"agencyrev"}
-echo $USERNAME $(t user $USERNAME | grep Followers | cut -d " " -f 5)
+for twittername in agencyrev revstatus michaeljans chowzer24 lucasjans stephencway joshuamonen kungfookenny; do
+	USERNAME=${1:-"$twittername"}
+	echo $USERNAME $(t user $USERNAME | grep Followers | cut -d " " -f 5)
+done
