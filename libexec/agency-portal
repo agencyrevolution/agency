@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# Usage: agency portal
+# Summary: Open, edit or preview a portal
+# Help: Open, edit or preview a portal
+#
+#    agency portal [open] [name]
+#    agency portal [images] [name]
+#    agency portal [edit] [name]
+#    agency portal [sass] [name]
+#    agency portal [js] [name]
+#    agency portal [preview] [name]
+
+set -e
+
+current_path=`pwd`
+
+ACTION=${1}
+PORTALNAME=${2:-"www"}
+PORTALSDIR="$HOME/Shares/AR-Clients/Portals"
+
+case $ACTION in
+
+	edit )
+	if [ -d $PORTALSDIR/$PORTALNAME ]; then
+		cd $PORTALSDIR/$PORTALNAME/
+		$EDITOR .
+	else
+		echo "Portal $PORTALNAME does not exist"
+	fi
+	;;
+
+	sass )
+	if [ -f $PORTALSDIR/$PORTALNAME/sass/portal.scss ]; then
+		$EDITOR $PORTALSDIR/$PORTALNAME/sass/portal.scss
+	else
+		$EDITOR $PORTALSDIR/$PORTALNAME/sass/portal2.scss
+	fi
+	;;
+
+	js )
+	if [ -f $PORTALSDIR/$PORTALNAME/portal.js ]; then
+		$EDITOR $PORTALSDIR/$PORTALNAME/portal.js
+	else
+		$EDITOR $PORTALSDIR/$PORTALNAME/portal2.js
+	fi
+	;;
+
+	images )
+	if [ -d $PORTALSDIR/$PORTALNAME/images ]; then
+		cd $PORTALSDIR/$PORTALNAME/images
+		ls
+	else
+		echo "Images folder does not exist"
+	fi
+	;;
+
+	open )
+	if [ -d $PORTALSDIR/$PORTALNAME ]; then
+		cd $PORTALSDIR/$PORTALNAME
+		ls
+	else
+		echo "Portal $PORTALNAME does not exist"
+	fi
+	;;
+
+	preview )
+	open http://$PORTALNAME.agencyrevolution.com
+	;;
+
+esac
+
+cd "$current_path"

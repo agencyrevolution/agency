@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# Usage: agency connect
+# Summary: Connect to Agency Revolution servers
+# Help: Uses mount to connect to multiple smb shares
+#
+#    agency connect
+
+set -e
+
+# Remote Server Login
+remote_username=""
+remote_password=""
+
+# Network Account Login
+network_username=""
+network_password=""
+
+# Where you want to mount these shares
+shares=$HOME/Shares
+
+get_ac () {
+  security 2>&1 >/dev/null find-generic-password -s $1 \
+  |ruby -e 'print $1 if STDIN.gets =~ /(?<=acct\"<blob>=\")[^\"]*$/'
+}
+
+get_pw () {
+  security 2>&1 >/dev/null find-generic-password -gs $1 \
+  |ruby -e 'print $1 if STDIN.gets =~ /^password: "(.*)"$/'
+}
+
+success () {
+	printf '\033[0;32m%s\033[0m\n'
+	printf '\033[0;32m%s\033[0m\n' " $1 "
+	printf '\033[0;32m%s\033[0m\n'
+}
+
+fail () {
+	printf '\033[0;32m%s\033[0m\n'
+	printf '\033[0;31m%s\033[0m\n' " $1 "
+	printf '\033[0;32m%s\033[0m\n'
+}
+
+# Connect to SMB Server
+# Args: Server, Sharename
+function smb_connect() {
+	# Ping the host to see if it exists
+	outp='ping -c 1 $1 | grep "0.0% packet loss"'
+
+	directory=${shares}\/$2
+
+	if [ "$outp" = "1 packets transmitted, 1 packets received, 0.0% packet loss" ]; then
+		fail "Could not find $1..."
+
+		if [ ! -d "$directory" ]; then
+			# Can't find directory so do nothing
+			echo "No mounting point for $directory"
+		else
+			echo "Found unused mounting point: $directory"
+			echo "Removing..."
+			rmdir "$directory"
+		fi
+	else
+		echo "Found $1, mounting $2 "
+
+		if [ ! -d "$directory" ]; then
+			# Can't find directory so create it
+			echo "Creating mounting point: $directory";
+			mkdir "$directory"
+		else
+			echo "Found mounting point: $directory"
+		fi
+		if [ -d "$directory" ]; then
+			echo "Mounting..."
+			username='get_ac $1'
+			password='get_pw $1'
+			mount_smbfs //"$3":"$4"@"$1"/"$2" "$directory"
+			success "Mounted $2"
+		fi
+	fi
+}
+
+for share in AR-Clients Ruby; do
+	smb_connect 192.168.168.220 $share $remote_username $remote_password
+done
+smb_connect ipssvr4 Groups $network_username $network_password

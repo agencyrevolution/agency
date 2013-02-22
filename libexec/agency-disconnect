@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Usage: agency disconnect
+# Summary: Disconnect from Agency Revolution servers
+# Help: Uses diskutil to disconnect from multiple smb shares
+#
+#    agency disconnect
+
+set -e
+
+# Where you want to mount these shares
+shares=$HOME/Shares
+
+success () {
+	printf '\033[0;32m%s\033[0m\n'
+	printf '\033[0;32m%s\033[0m\n' " $1 "
+	printf '\033[0;32m%s\033[0m\n'
+}
+
+fail () {
+	printf '\033[0;32m%s\033[0m\n'
+	printf '\033[0;31m%s\033[0m\n' " $1 "
+	printf '\033[0;32m%s\033[0m\n'
+}
+
+# Disconnect from SMB Server
+# Args: Server, Sharename
+function smb_disconnect() {
+	directory=${shares}\/$2
+
+	if [ -d $directory ]; then
+		echo "Found $1, unmounting $2 "
+		diskutil umount $directory
+		success "Unmounted $2"
+		echo "Removing..."
+		rmdir "$directory"
+	else
+		fail "Could not find $1..."
+	fi
+}
+
+for share in AR-Clients Ruby; do
+	smb_disconnect 192.168.168.220 $share
+done
+smb_disconnect ipssvr4 Groups
