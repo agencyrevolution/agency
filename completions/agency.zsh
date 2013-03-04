@@ -38,6 +38,9 @@ alias remotegems="cd ~/Shares/Ruby/lib/ruby/gems/1.9.1/gems && ls"
 alias qdrive="cd ~/Shares/Groups && ls"
 
 # Skins
-for skin in susy echo; do
+for skin in susy echoframework; do
   alias $skin="skins && $EDITOR $skin"
 done
+
+# Convert Wordpress to SunBlogNuke
+alias wpmigrate="mono ~/bin/WPBlogML.exe "
