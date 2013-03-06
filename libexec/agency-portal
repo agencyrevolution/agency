@@ -8,12 +8,14 @@
 #    agency portal [sass] [name]
 #    agency portal [js] [name]
 #    agency portal [view] [name]
+#    agency portal [copy] [target] [destination]
 
 set -e
 
 ACTION=${1}
-PORTALNAME=${2:-"www"}
+PORTALNAME=${2}
 PORTALSDIR="$HOME/Shares/AR-Clients/Portals"
+DESTPORTALNAME=${3}
 
 case $ACTION in
 
@@ -29,16 +31,20 @@ case $ACTION in
 	sass )
 	if [ -f $PORTALSDIR/$PORTALNAME/sass/portal.scss ]; then
 		$EDITOR $PORTALSDIR/$PORTALNAME/sass/portal.scss
-	else
+  elif [ -f $PORTALSDIR/$PORTALNAME/sass/portal2.scss ]; then
 		$EDITOR $PORTALSDIR/$PORTALNAME/sass/portal2.scss
+  else
+    echo "Sass files do not exist in this portal"
 	fi
 	;;
 
 	js )
 	if [ -f $PORTALSDIR/$PORTALNAME/portal.js ]; then
 		$EDITOR $PORTALSDIR/$PORTALNAME/portal.js
-	else
+  elif [ -f $PORTALSDIR/$PORTALNAME/portal2.js ]; then
 		$EDITOR $PORTALSDIR/$PORTALNAME/portal2.js
+  else
+    echo "Javascript files do not exist in this portal"
 	fi
 	;;
 
@@ -53,6 +59,17 @@ case $ACTION in
 	view )
 	open http://$PORTALNAME.agencyrevolution.com
 	;;
+  
+  copy )
+  for FILE in config.rb Gemfile portal.js portal2.js portal.css portal2.css sass/portal.scss sass/portal2.scss
+  do
+    if [ -f $PORTALSDIR/$DESTPORTALNAME/$FILE ]; then
+      rm -rf $PORTALSDIR/$DESTPORTALNAME/$FILE
+      cp $PORTALSDIR/$PORTALNAME/$FILE $PORTALSDIR/$DESTPORTALNAME/$FILE
+    else
+      echo "$FILE does not exist"
+  done
+  ;;
 
 esac
 
