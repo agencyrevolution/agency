@@ -59,6 +59,17 @@ case $ACTION in
 	view )
 	open http://$PORTALNAME.agencyrevolution.com
 	;;
+
+  clean )
+  for FILE in portal.bak.css
+  do
+    if [ -f $PORTALSDIR/$PORTALNAME/$FILE ]; then
+      rm -rf $PORTALSDIR/$PORTALNAME/$FILE
+    else
+      echo "$FILE does not exist"
+    fi
+  done
+  ;;
   
   copy )
   for FILE in config.rb Gemfile portal.js portal2.js portal.css portal2.css sass/portal.scss sass/portal2.scss
@@ -68,6 +79,7 @@ case $ACTION in
       cp $PORTALSDIR/$PORTALNAME/$FILE $PORTALSDIR/$DESTPORTALNAME/$FILE
     else
       echo "$FILE does not exist"
+    fi
   done
   ;;
 
