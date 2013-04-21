@@ -18,6 +18,11 @@ _agency() {
   reply=("${(ps:\n:)completions}")
 }
 
+alias a="agency"
+alias ap="agency portal"
+alias ape="agency portal edit"
+alias gtfo="agency disconnect && airport on"
+
 # Sharepoint
 alias sharepoint="$BROWSER 'http://sharepoint3'"
 
@@ -30,12 +35,12 @@ alias zendesk="$BROWSER 'https://agencyrevolution.zendesk.com/agent'"
 alias knowledgebase="$BROWSER 'https://agencyrevolution.zendesk.com/forums'"
 
 # Common directories
-alias portals="cd ~/Shares/AR-Clients/Portals && ls"
-alias assets="cd ~/Shares/AR-Clients/Portals/_assets && ls"
-alias skins="cd ~/Shares/AR-Clients/Portals/_default/Skins && ls"
-alias modules="cd ~/Shares/AR-Clients/DesktopModules && ls"
-alias remotegems="cd ~/Shares/Ruby/lib/ruby/gems/1.9.1/gems && ls"
-alias qdrive="cd ~/Shares/Groups && ls"
+alias portals="cd /shares/AR-Clients/Portals && ls"
+alias assets="cd /shares/AR-Clients/Portals/_assets && ls"
+alias skins="cd /shares/AR-Clients/Portals/_default/Skins && ls"
+alias modules="cd /shares/AR-Clients/DesktopModules && ls"
+alias remotegems="cd /shares/Ruby/lib/ruby/gems/1.9.1/gems && ls"
+alias qdrive="cd /shares/Groups && ls"
 
 # Skins
 for skin in susy echoframework; do

@@ -8,7 +8,7 @@
 set -e
 
 # Where you want to mount these shares
-shares=$HOME/Shares
+shares=/shares
 
 success () {
 	printf '\033[0;32m%s\033[0m\n'

@@ -8,13 +8,15 @@
 #    agency portal [sass] [name]
 #    agency portal [js] [name]
 #    agency portal [view] [name]
+#    agency portal [clean] [name]
 #    agency portal [copy] [target] [destination]
+#    agency poratl [watch] [name]
 
 set -e
 
 ACTION=${1}
 PORTALNAME=${2}
-PORTALSDIR="$HOME/Shares/AR-Clients/Portals"
+PORTALSDIR="/shares/AR-Clients/Portals"
 DESTPORTALNAME=${3}
 
 case $ACTION in
@@ -63,24 +65,58 @@ case $ACTION in
   clean )
   for FILE in portal.bak.css
   do
-    if [ -f $PORTALSDIR/$PORTALNAME/$FILE ]; then
+ #   if [ -f $PORTALSDIR/$PORTALNAME/$FILE ]; then
       rm -rf $PORTALSDIR/$PORTALNAME/$FILE
-    else
-      echo "$FILE does not exist"
-    fi
+ #   else
+ #     echo "$FILE does not exist"
+ #   fi
+  done
+  for FOLDER in css
+  do
+ #   if [ -d $PORTALSDIR/$PORTALNAME/$FOLDER ]; then
+      rm -rf $PORTALSDIR/$PORTALNAME/$FOLDER
+ #   else
+ #     echo "$FOLDER does not exist"
+ #   fi
   done
   ;;
   
   copy )
-  for FILE in config.rb Gemfile portal.js portal2.js portal.css portal2.css sass/portal.scss sass/portal2.scss
+  for FILE in config.rb Gemfile portal.js portal2.js portal.css portal2.css
   do
     if [ -f $PORTALSDIR/$DESTPORTALNAME/$FILE ]; then
       rm -rf $PORTALSDIR/$DESTPORTALNAME/$FILE
-      cp $PORTALSDIR/$PORTALNAME/$FILE $PORTALSDIR/$DESTPORTALNAME/$FILE
     else
-      echo "$FILE does not exist"
+      echo "$FILE does not exist, copying into $DESTPORTALNAME"
+      cp $PORTALSDIR/$PORTALNAME/$FILE $PORTALSDIR/$DESTPORTALNAME/$FILE
+    fi
+  mkdir -p $PORTALSDIR/$DESTPORTALNAME/sass 
+  for SASSFILE in portal.scss portal2.scss
+  do
+    if [ -f $PORTALSDIR/$DESTPORTALNAME/sass/$SASSFILE ]; then
+      rm -rf $PORTALSDIR/$DESTPORTALNAME/sass/$SASSFILE
+    else
+      echo "$SASSFILE does not exist, copying into $DESTPORTALNAME"
+      cp $PORTALSDIR/$PORTALNAME/sass/$SASSFILE $PORTALSDIR/$DESTPORTALNAME/sass/$SASSFILE
     fi
   done
+  done
+  ;;
+  
+  watch )
+    if [ -f $PORTALSDIR/$PORTALNAME/config.rb ]; then
+      compass watch $PORTALSDIR/$PORTALNAME
+    else
+      echo "$PORTALNAME is not configured yet."
+    fi
+  ;;
+
+  compile )
+    if [ -f $PORTALSDIR/$PORTALNAME/config.rb ]; then
+      compass compile $PORTALSDIR/$PORTALNAME
+    else
+      echo "$PORTALNAME is not configured yet."
+    fi
   ;;
 
 esac
