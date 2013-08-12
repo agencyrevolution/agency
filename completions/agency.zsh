@@ -35,12 +35,12 @@ alias zendesk="$BROWSER 'https://agencyrevolution.zendesk.com/agent'"
 alias knowledgebase="$BROWSER 'https://agencyrevolution.zendesk.com/forums'"
 
 # Common directories
-alias portals="cd /shares/AR-Clients/Portals && ls"
-alias assets="cd /shares/AR-Clients/Portals/_assets && ls"
-alias skins="cd /shares/AR-Clients/Portals/_default/Skins && ls"
-alias modules="cd /shares/AR-Clients/DesktopModules && ls"
-alias remotegems="cd /shares/Ruby/lib/ruby/gems/1.9.1/gems && ls"
-alias qdrive="cd /shares/Groups && ls"
+alias portals="cd /shares/AR-Clients/Portals"
+alias assets="cd /shares/AR-Clients/Portals/_assets"
+alias skins="cd /shares/AR-Clients/Portals/_default/Skins"
+alias modules="cd /shares/AR-Clients/DesktopModules"
+alias remotegems="cd /shares/Ruby/lib/ruby/gems/1.9.1/gems"
+alias qdrive="cd /shares/Groups"
 
 # Skins
 for skin in susy echoframework; do

@@ -16,51 +16,51 @@ set -e
 
 ACTION=${1}
 PORTALNAME=${2}
-PORTALSDIR="/shares/AR-Clients/Portals"
+PORTALSDIR="/Resources/clients/Portals"
 DESTPORTALNAME=${3}
 
 case $ACTION in
 
-	edit )
-	if [ -d $PORTALSDIR/$PORTALNAME ]; then
-		cd $PORTALSDIR/$PORTALNAME/
-		$EDITOR .
-	else
-		echo "Portal $PORTALNAME does not exist"
-	fi
-	;;
+  edit )
+  if [ -d $PORTALSDIR/$PORTALNAME ]; then
+    cd $PORTALSDIR/$PORTALNAME/
+    $EDITOR .
+  else
+    echo "Portal $PORTALNAME does not exist"
+  fi
+  ;;
 
-	sass )
-	if [ -f $PORTALSDIR/$PORTALNAME/sass/portal.scss ]; then
-		$EDITOR $PORTALSDIR/$PORTALNAME/sass/portal.scss
+  sass )
+  if [ -f $PORTALSDIR/$PORTALNAME/sass/portal.scss ]; then
+    $EDITOR $PORTALSDIR/$PORTALNAME/sass/portal.scss
   elif [ -f $PORTALSDIR/$PORTALNAME/sass/portal2.scss ]; then
-		$EDITOR $PORTALSDIR/$PORTALNAME/sass/portal2.scss
+    $EDITOR $PORTALSDIR/$PORTALNAME/sass/portal2.scss
   else
     echo "Sass files do not exist in this portal"
-	fi
-	;;
+  fi
+  ;;
 
-	js )
-	if [ -f $PORTALSDIR/$PORTALNAME/portal.js ]; then
-		$EDITOR $PORTALSDIR/$PORTALNAME/portal.js
+  js )
+  if [ -f $PORTALSDIR/$PORTALNAME/portal.js ]; then
+    $EDITOR $PORTALSDIR/$PORTALNAME/portal.js
   elif [ -f $PORTALSDIR/$PORTALNAME/portal2.js ]; then
-		$EDITOR $PORTALSDIR/$PORTALNAME/portal2.js
+    $EDITOR $PORTALSDIR/$PORTALNAME/portal2.js
   else
     echo "Javascript files do not exist in this portal"
-	fi
-	;;
+  fi
+  ;;
 
-	images )
-	if [ -d $PORTALSDIR/$PORTALNAME/images ]; then
-		cd $PORTALSDIR/$PORTALNAME/images && ls
-	else
-		echo "Images folder does not exist"
-	fi
-	;;
+  images )
+  if [ -d $PORTALSDIR/$PORTALNAME/images ]; then
+    cd $PORTALSDIR/$PORTALNAME/images && ls
+  else
+    echo "Images folder does not exist"
+  fi
+  ;;
 
-	view )
-	open http://$PORTALNAME.agencyrevolution.com
-	;;
+  view )
+  open http://$PORTALNAME.agencyrevolution.com
+  ;;
 
   clean )
   for FILE in portal.bak.css
@@ -80,7 +80,7 @@ case $ACTION in
  #   fi
   done
   ;;
-  
+
   copy )
   for FILE in config.rb Gemfile portal.js portal2.js portal.css portal2.css
   do
@@ -102,7 +102,7 @@ case $ACTION in
   done
   done
   ;;
-  
+
   watch )
     if [ -f $PORTALSDIR/$PORTALNAME/config.rb ]; then
       compass watch $PORTALSDIR/$PORTALNAME
@@ -120,4 +120,3 @@ case $ACTION in
   ;;
 
 esac
-

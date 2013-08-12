@@ -10,26 +10,26 @@ set -e
 SHORTCUT=${1:-"contacts"}
 
 case "$SHORTCUT" in
-	forms )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/smartform.php?b=1'
-		;;
-	api )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/admin.php?action=api'
-		;;
-	fields )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/field_edit.php'
-		;;
-	domains )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/tracking.php?action=domainname&b=1'
-		;;
-	sequences )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/sequence_manager.php'
-		;;
-	pages )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/landingpage_manager.php'
-		;;
-	* )
-		$BROWSER 'https://www1.moon-ray.com/v2.4/contact_manager.php'
-		;;
+  forms )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/smartform.php?b=1'
+    ;;
+  api )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/admin.php?action=api'
+    ;;
+  fields )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/field_edit.php'
+    ;;
+  domains )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/tracking.php?action=domainname&b=1'
+    ;;
+  sequences )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/sequence_manager.php'
+    ;;
+  pages )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/landingpage_manager.php'
+    ;;
+  * )
+    $BROWSER 'https://www1.moon-ray.com/v2.4/contact_manager.php'
+    ;;
 esac
 

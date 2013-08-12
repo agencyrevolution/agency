@@ -10,15 +10,15 @@ set -e
 current_path=`pwd`
 
 success () {
-	printf '\033[0;32m%s\033[0m\n'
-	printf '\033[0;32m%s\033[0m\n' " $1 "
-	printf '\033[0;32m%s\033[0m\n'
+  printf '\033[0;32m%s\033[0m\n'
+  printf '\033[0;32m%s\033[0m\n' " $1 "
+  printf '\033[0;32m%s\033[0m\n'
 }
 
 fail () {
-	printf '\033[0;32m%s\033[0m\n'
-	printf '\033[0;31m%s\033[0m\n' " $1 "
-	printf '\033[0;32m%s\033[0m\n'
+  printf '\033[0;32m%s\033[0m\n'
+  printf '\033[0;31m%s\033[0m\n' " $1 "
+  printf '\033[0;32m%s\033[0m\n'
 }
 
 brew="brew update"
@@ -26,11 +26,11 @@ npm="npm update"
 gem="gem update --system && gem update `gem list | cut -d ' ' -f 1`"
 
 for tool in $brew $gem $npm; do
-	if $tool then
-		success "Updated with $tool"
-	else
-		fail "Update failed with $tool"
-	fi
+  if $tool then
+    success "Updated with $tool"
+  else
+    fail "Update failed with $tool"
+  fi
 done
 
 cd "$current_path"
