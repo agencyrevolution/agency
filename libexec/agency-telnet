@@ -7,8 +7,8 @@
 
 set timeout 20
 set IPaddress "192.168.168.220"
-set Username "stephen.way@quantumclub.local"
-set Password "Walker03"
+set Username "@quantumclub.local"
+set Password ""
 set Directory .
 
 log_file -a $Directory/session_$IPaddress.log
