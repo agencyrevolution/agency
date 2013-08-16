@@ -18,10 +18,8 @@ _agency() {
   reply=("${(ps:\n:)completions}")
 }
 
-alias a="agency"
 alias ap="agency portal"
 alias ape="agency portal edit"
-alias gtfo="agency disconnect && airport on"
 
 # Sharepoint
 alias sharepoint="$BROWSER 'http://sharepoint3'"
@@ -34,17 +32,19 @@ alias timeforcepunch="$BROWSER http://bend.quantumclub.com/qqest/time/timeCard.a
 alias zendesk="$BROWSER 'https://agencyrevolution.zendesk.com/agent'"
 alias knowledgebase="$BROWSER 'https://agencyrevolution.zendesk.com/forums'"
 
-# Common directories
-alias portals="cd /Volumes/Resources/clients/Portals"
-alias assets="cd /Volumes/Resources/clients/Portals/_assets"
-alias skins="cd /Volumes/Resources/clients/Portals/_default/Skins"
-alias modules="cd /Volumes/Resources/clients/DesktopModules"
-alias qdrive="cd /Volumes/Resources/docs"
+# DNN directories
+alias revportals="cd /Volumes/Resources/production/Portals"
+alias devportals="cd /Volumes/Resources/development"
 
-# Skins
-for skin in susy echoframework; do
-  alias $skin="skins && $EDITOR $skin"
-done
+alias revcomponents="cd /Volumes/Resources/production/Resources/Shared/components"
+
+alias revskins="cd /Volumes/Resources/production/Portals/_default/Skins"
+alias devskins="cd /Volumes/Resources/development/_default/Skins"
+
+alias revmodules="cd /Volumes/Resources/production/DesktopModules"
+
+# Docs directory
+alias revdocs="cd /Volumes/Resources/docs"
 
 # Convert Wordpress to SunBlogNuke
 alias wpmigrate="mono ~/bin/WPBlogML.exe "
