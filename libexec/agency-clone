@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Usage: agency clone
+# Summary: Git wrapper for Bitbucket
+# Help: Clone off bitbucket
+#
+#    agency clone [user]/[repo]
+
+set -e
+
+GC='git clone https://scw@bitbucket.org'
+
+$GC/${1}/${2}.git
