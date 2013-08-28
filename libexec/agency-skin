@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Usage: agency skin
+# Summary: Git operations for skins
+# Help: Push and pull skins
+#
+#    agency skin [action] [name]
+
+set -e
+
+ACTION=${1}
+PORTAL=${2}
+SKIN=${3}
+DIR="/Resources/production/Portals"
+
+case $ACTION in
+
+  pull )
+  if [ -d $DIR/$PORTAL/Skins/$SKIN ]; then
+    cd $DIR/$PORTAL/Skins/$SKIN/
+    git pull origin master
+    cd -
+  else
+    echo "Portal $PORTAL/$SKIN does not exist"
+  fi
+  ;;
+
+  push )
+  if [ -d $DIR/$PORTAL/Skins/$SKIN ]; then
+    cd $DIR/$PORTAL/Skins/$SKIN/
+    git push origin master
+    cd -
+  else
+    echo "Portal $PORTAL/$SKIN does not exist"
+  fi
+  ;;
+
+esac
+
