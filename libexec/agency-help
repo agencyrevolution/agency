@@ -47,7 +47,7 @@ print_help() {
 }
 
 command_path() {
-  command -v "agency-$command" || command -v "agency-sh-$command" || true
+  command -v "agency-$command" || command -v "sub-sh-$command" || true
 }
 
 summary() {
