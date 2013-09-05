@@ -3,14 +3,14 @@
 # Summary: Git operations for skins
 # Help: Push and pull skins
 #
-#    agency skin [action] [name]
+#    agency skin [action] [portal] [skin]
 
 set -e
 
 ACTION=${1}
 PORTAL=${2}
 SKIN=${3}
-DIR="/Resources/production/Portals"
+DIR="/Volumes/Resources/production/Portals"
 
 case $ACTION in
 
