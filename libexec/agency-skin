@@ -14,6 +14,12 @@ DIR="/Volumes/Resources/production/Portals"
 
 case $ACTION in
 
+  clone )
+    cd $DIR/$PORTAL/Skins
+    git clone git@bitbucket.org:agencyrevolution/$SKIN\.git
+    cd -
+  ;;
+
   pull )
   if [ -d $DIR/$PORTAL/Skins/$SKIN ]; then
     cd $DIR/$PORTAL/Skins/$SKIN/

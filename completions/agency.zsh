@@ -20,6 +20,7 @@ _agency() {
 
 alias ap="agency portal"
 alias ape="agency portal edit"
+alias amx="agency portal mx"
 
 # Sharepoint
 alias sharepoint="$BROWSER 'http://sharepoint3'"

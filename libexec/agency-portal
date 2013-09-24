@@ -15,7 +15,7 @@ set -e
 
 ACTION=${1}
 PORTALNAME=${2}
-PORTALSDIR="/Resources/production/Portals"
+PORTALSDIR="/Volumes/Resources/production/Portals"
 DESTPORTALNAME=${3}
 
 case $ACTION in
@@ -23,10 +23,14 @@ case $ACTION in
   edit )
   if [ -d $PORTALSDIR/$PORTALNAME ]; then
     cd $PORTALSDIR/$PORTALNAME/
-    $EDITOR .
+    $EDITOR
   else
     echo "Portal $PORTALNAME does not exist"
   fi
+  ;;
+
+  mx )
+    cd $PORTALSDIR/$PORTALNAME && mx
   ;;
 
   sass )

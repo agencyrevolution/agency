@@ -9,4 +9,4 @@ set -e
 
 GC='git clone https://scw@bitbucket.org'
 
-$GC/${1}/${2}.git
+$GC/${1}/${2}.git ${3}
